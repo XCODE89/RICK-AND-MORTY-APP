@@ -4,9 +4,9 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-image: url(./Images/body.jpg);
-  background-size: 100%;
-
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .contCards {

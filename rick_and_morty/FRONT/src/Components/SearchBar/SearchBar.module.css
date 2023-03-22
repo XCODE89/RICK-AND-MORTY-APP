@@ -1,0 +1,25 @@
+.input {
+    color: black;
+    font-weight: bold;
+    opacity: 0.5;
+    border-radius: 5px;
+    width: 50%;
+    margin: 5px;
+}
+.input:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.button {
+    border-radius: 5px;
+    background-color:  #1bf234;
+    opacity: 0.5;
+}
+.button:hover {
+    opacity: 1;
+    transition: 0.5s;
+    transform: scale(1.1);
+    color: white;
+}
+

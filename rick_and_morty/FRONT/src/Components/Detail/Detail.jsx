@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import style from "./Detail.module.css"
+
 
 const Detail = () => {
     
@@ -8,7 +9,7 @@ const Detail = () => {
     const {detailId} = useParams();
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+        fetch(`http://localhost:3001/rickandmorty/detail/${detailId}`)
         .then((response) => response.json())
         .then((char) => {
             if (char.name) {
@@ -25,13 +26,29 @@ const Detail = () => {
 
 
     return (
-        <div>
-            <Link to="/home">Home</Link>
-            <h1>{character?.name}</h1>
-            <p>{character?.status}</p>
-            <p>{character?.species}</p>
-            <p>{character?.origin?.name}</p>
-            <img src={character?.image} alt={character.name}></img>
+        <div className={style.container}>
+            <div className={style.box}>
+                <div className={style.imgBox}>
+                    <img className={style.img} src={character?.image} alt={character.name}></img>
+                </div>
+                <div className={style.content}>
+                    <div className={style.textCont}>
+                        <p className={style.item}>Name:<br/>{character?.name}</p>
+                    </div>
+                    <div className={style.textCont}>
+                        <p className={style.item}>Specie:<br/>{character?.species}</p>
+                    </div>
+                    <div className={style.textCont}>
+                        <p className={style.item}>Gender:<br/>{character?.gender}</p>
+                    </div>
+                    <div className={style.textCont}>
+                        <p className={style.item}>Status:<br/>{character?.status}</p>
+                    </div>
+                    <div className={style.textCont}>
+                     <p className={style.item}>Origin:<br/>{character?.origin}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

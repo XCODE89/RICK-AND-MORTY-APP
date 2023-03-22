@@ -1,6 +1,6 @@
 const validation = (userData) => {
     let errors = {};
-    if(!/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{6,10})+$/.test(userData.username)) {
+    if(!/^(([^<>()\[\]\.,;:\s@\”]+(\.[^<>()\[\]\.,;:\s@\”]+)*)|(\”.+\”))@(([^<>()[\]\.,;:\s@\”]+\.)+[^<>()[\]\.,;:\s@\”]{2,})$/.test(userData.username)) {
         errors.username = "El email es invalido"
     }
     if(!userData.username) {

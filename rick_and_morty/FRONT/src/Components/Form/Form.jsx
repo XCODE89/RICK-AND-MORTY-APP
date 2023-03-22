@@ -1,5 +1,6 @@
 import { useState } from "react"
 import validation from "./Validation"
+import style from "./form.module.css"
 
 const Form = ({login}) => {
 
@@ -32,15 +33,33 @@ const handleSubmit = (event) => {
 }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="username"></label>
-            <input type="text" name="username" value={userData.username} onChange={handleOnChange}></input>
-            {errors.username && <p>{errors.username}</p>}
-            <label htmlFor="password"></label>
-            <input type="password" name="password" value={userData.password} onChange={handleOnChange}></input>
-            {errors.password && <p>{errors.password}</p>}
-            <button>LOGIN</button>
-        </form>
+        <div className={style.formCont}>
+            <form onSubmit={handleSubmit} className={style.form}>
+            <h2 className={style.login}>LOGIN</h2>
+                <div className={style.inputCont}>
+                    <label htmlFor="username"></label>
+                    <input className={style.input} placeholder="Username" type="text" autoComplete="off" name="username" value={userData.username} onChange={handleOnChange}></input>
+                    <div className={style.errorCont}>
+                    {errors.username && <p className={style.alertError}>{errors.username}</p>}
+                    </div>
+                </div>
+                <div className={style.inputCont}>
+                    <label htmlFor="password"></label>
+                    <input className={style.input} placeholder="Password" type="password" name="password" value={userData.password} onChange={handleOnChange}></input>
+                    <div className={style.errorCont}>
+                    {errors.password && <p className={style.alertError}>{errors.password}</p>}
+                    </div>
+                </div>
+                <div>
+                    <button className={style.button}> GET STARTED</button>
+                </div>
+            </form> 
+        </div>
     )
 }
+
 export default Form;
+
+
+
+

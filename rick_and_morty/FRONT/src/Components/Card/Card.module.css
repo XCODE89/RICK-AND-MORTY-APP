@@ -15,12 +15,11 @@
 }
 
 .box:hover .imgBox {
-    transform: translate(-2rem, -1.5rem);
-    box-shadow: 1px 1px 10px 3px rgb(100, 238, 201)
+    box-shadow: 1px 1px 10px 3px  #1bf234
 }
 
 .box:hover .content {
-    transform: translate(.5rem, 2.5rem);
+    transform: translate(0, 3.5rem);
     transition: 0.7s;
 }
 
@@ -48,10 +47,14 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: flex-end;
-    background-image: url("../../Images/card.jpg");
+    background-image: url("../../Images/card2.jpg");
     background-size: cover;
     color: white;
     border-radius: 20px;
+}
+.nameLink {
+    text-decoration: none;
+    color: white;
 }
 
 .item {
@@ -60,16 +63,31 @@
     font-size: 20px;
 }
 
+.icons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .eliminar {
-    height: 30px;
-    width: 30px;
     font-size: 25px;
     border-radius: 5px;
-    background-color: rgb(133, 13, 13);
+    background-color: rgb(241, 9, 9);
     color: white;
     font-weight: bold;
     position: absolute;
     margin: 5px;
+    font-size: 20px;
+    text-align: center;
+    
+}
+.like {
+    position: absolute;
+    right: 0;
+    margin: 5px 10px;
+    height: 25px;
+    background-color: transparent;
+    font-size: 30px;
+    border: none;
 }
 .eliminar:hover {
     cursor: pointer;
