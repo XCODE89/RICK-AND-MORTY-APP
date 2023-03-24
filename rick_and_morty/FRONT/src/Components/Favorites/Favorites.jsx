@@ -3,7 +3,7 @@ import style from "./favorites.module.css";
 import { Link } from "react-router-dom";
 import { orderCards, filterCards } from "../../Redux/actions";
 
-const Favorites = () => {
+const Favorites = (props) => {
   const { myFavorites } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -14,57 +14,44 @@ const Favorites = () => {
   const handlerFilter = (event) => {
     dispatch(filterCards(event.target.value));
   };
+
+  const closeFav = () =>{
+    myFavorites.forEach(fav => {props.onClose(fav.id)      
+    });
+  }
   return (
-    <div>
+    <div className={style.general}>
       <div>
-        <select onChange={handlerOrder}>
+        <select className={style.select} onChange={handlerOrder}>
           <option value="order" disabled="disabled">Order By</option>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>
-        <select onChange={handlerFilter}>
+        <select className={style.select} onChange={handlerFilter}>
           <option value="order" disabled="disabled">Order By</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Unknown">Unknown</option>
-          <option value="Genderless">Gernderless</option>
+          <option value="Genderless">Genderless</option>
         </select>
+        <button className={style.select} onClick={() =>closeFav()}>Clear Favorites</button>
       </div>
-
+      <div className={style.container}>
       {myFavorites.map((character) => {
         return (
-          <div>
             <div className={style.box}>
               <div className={style.imgBox}>
-                <img
-                  className={style.img}
-                  src={character.image}
-                  alt={character.name}
-                />
+                <img className={style.img} src={character.image} alt={character.name}/>
               </div>
               <div className={style.content}>
-                <Link to={`/detail/${character.id}`}>
-                  <h2 className={style.item}>
-                    <small>Nombre:</small>
-                    <br></br>
-                    {character.name}
-                  </h2>
+                <Link className={style.nameLink} to={`/detail/${character.id}`}>
+                  <h2 className={style.item}>Name: <br/>{character.name}</h2>
                 </Link>
-                <h2 className={style.item}>
-                  <small>Especie:</small>
-                  <br></br>
-                  {character.species}
-                </h2>
-                <h2 className={style.item}>
-                  <small>Genero:</small>
-                  <br></br>
-                  {character.gender}
-                </h2>
               </div>
             </div>
-          </div>
         );
       })}
+      </div>
     </div>
   );
 };

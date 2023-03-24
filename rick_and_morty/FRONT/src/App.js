@@ -7,6 +7,8 @@ import About from './Components/About/About';
 import Detail from './Components/Detail/Detail';
 import Form from './Components/Form/Form';
 import Favorites from './Components/Favorites/Favorites';
+import { deleteFavorite } from "./Redux/actions"
+import { useDispatch } from "react-redux"
 
 function App() {
 const [characters, setCharacters] = useState([]);
@@ -14,8 +16,8 @@ const location = useLocation();
 const navigate = useNavigate();
 const [access, setAccess] = useState(false);
 
-const username = "";
-const password = "";
+const username = "maph0989@gmail.com";
+const password = "123456";
 
 const login = (userData) => {
   if (userData.username === username && userData.password === password) {
@@ -44,22 +46,40 @@ const onSearch = (characterId) => {
     }
   });
 }
+const dispatch = useDispatch()
 
 const onClose = (id) => {
   setCharacters(
     characters.filter((char)=>char.id!==id)
-  ) 
+  )
+  dispatch(deleteFavorite(id))
+}
+
+const randomChar = () => {
+  const id = Math.floor(Math.random()*827)
+  fetch(`http://localhost:3001/rickandmorty/onsearch/${id}`)
+  .then((response) => response.json())
+  .then((data) => {
+        setCharacters([...characters, data]);
+  });
+}
+
+const clearAll = () => {
+  characters.forEach(char => {
+    setCharacters([])
+    dispatch(deleteFavorite(char.id))
+  });
 }
 
 
   return (
   <div className='App' >
-    {location.pathname === "/" ? <Form login={login}/> : <Nav onSearch={onSearch} />}
+    {location.pathname === "/" ? <Form login={login}/> : <Nav onSearch={onSearch} randomChar={randomChar} clearAll={clearAll}/>}
       <Routes>
         <Route path='/home' element= {<Cards onClose={onClose} characters={characters}/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/detail/:detailId' element={<Detail/>} />
-        <Route path="favorites" element={<Favorites/>}/>
+        <Route path="favorites" element={<Favorites onClose={onClose} />}/>
       </Routes>
   </div>
 )

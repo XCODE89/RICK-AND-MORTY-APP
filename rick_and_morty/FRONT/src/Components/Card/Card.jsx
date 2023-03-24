@@ -38,7 +38,7 @@ return (
                   ? (<button className={style.like} onClick={handleFavorite}>❤️</button>) 
                   : (<button className={style.like} onClick={handleFavorite}>🤍</button>)
                }
-                  <button className={style.eliminar} onClick={() =>props.onClose(props.id)}>X</button>
+               <button className={style.eliminar} onClick={() =>props.onClose(props.id)}>X</button>
             </div>
                <img className={style.img} src={props.image} alt={props.name} />
          </div>
@@ -49,12 +49,5 @@ return (
          </div>
       </div>
    </div>
-      // <div>
-      //    <button onClick={()=>{onClose(id)}}>X</button>
-      //    <h2>{name}</h2>
-      //    <h2>{species}</h2>
-      //    <h2>{gender}</h2>
-      //    <img src={image} alt={name} />
-      // </div>
    )
 }

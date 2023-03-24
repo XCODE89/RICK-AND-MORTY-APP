@@ -1,27 +1,47 @@
+
+.general {
+    width: 100%;
+}
+
+.select {
+    margin: 30px;
+    border: #b1b1b1 solid 2px;
+    border-radius: 10px;
+    width: 12%;
+    color: rgb(16, 156, 32);
+    font-size: 18px;
+}
+
 .container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0px 30px;
 }
 
 .box {
     position: relative;
-    width: 20rem;
-    height: 20rem;
-    margin: 3rem;
+    width: 15rem;
+    height: 15rem;
+    margin: 50px 30px;
+    align-content: center;
 
 }
 
 .box:hover .imgBox {
-    transform: translate(-2rem, -1.5rem);
-    box-shadow: 1px 1px 10px 3px rgb(100, 238, 201)
+    box-shadow: 1px 1px 10px 3px  rgb(27, 242, 52);
+    transform: scale(1.05);
 }
 
 .box:hover .content {
-    transform: translate(.5rem, 2.5rem);
-    transition: 0.7s;
+    transform: translate(0, 4.2rem);
+    opacity: 1;
+    transition: 1s;
+    box-shadow: 1px 1px 10px 3px white;
+    background-color: rgba(47, 41, 85, 0.7);
+    background-size: cover;
 }
 
 .imgBox {
@@ -32,7 +52,9 @@
     height: 100%;
     z-index: 2;
     transition: all 0.5s ease-in-out;
+    border: rgb(138, 133, 133) solid 2px;
     border-radius: 20px;
+    box-shadow: 1px 1px 10px 3px white
 }
 
 .img {
@@ -43,34 +65,25 @@
 }
 
 .content {
-    height: 20rem;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: flex-end;
-    background-image: url("../../Images/card.jpg");
-    background-size: cover;
     color: white;
     border-radius: 20px;
+    opacity: 0;
+    font-size: 20px;
+}
+
+.nameLink {
+    text-decoration: none;
+    color: white;
 }
 
 .item {
     height: fit-content;
     margin: 3px;
     font-size: 20px;
-}
-
-.eliminar {
-    height: 30px;
-    width: 30px;
-    font-size: 25px;
-    border-radius: 5px;
-    background-color: rgb(133, 13, 13);
-    color: white;
-    font-weight: bold;
-    position: absolute;
-    margin: 5px;
-}
-.eliminar:hover {
-    cursor: pointer;
 }

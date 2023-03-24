@@ -10,10 +10,10 @@ const validation = (userData) => {
         errors.username = "El email no puede superar los 35 caracteres"
     }
     if(!userData.password.match(/\d/)){
-        errors.password = "Password debe contener al menos un numero"   
+        errors.password = "Debe contener al menos un numero"   
     }
     if(userData.password.length < 6 || userData.password.length > 10 ) {
-        errors.password = "Password debe tener entre 6 y 10 caracteres"
+        errors.password = "Debe tener entre 6 y 10 caracteres"
     }
     return errors
 };
