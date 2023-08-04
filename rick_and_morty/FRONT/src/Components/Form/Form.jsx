@@ -1,6 +1,9 @@
 import { useState } from "react"
 import validation from "./Validation"
 import style from "./form.module.css"
+import { Link } from 'react-router-dom';
+import axios from "axios";
+
 
 const Form = ({login}) => {
 
@@ -27,8 +30,10 @@ const handleOnChange = (event) => {
     }))
 }
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
+    const response = await axios.post("http://localhost:3001/rickandmorty/login", userData)
+    console.log(response.data)
     login(userData)
 }
 
@@ -51,7 +56,9 @@ const handleSubmit = (event) => {
                     </div>
                 </div>
                 <div>
-                    <button className={style.button}> GET STARTED</button>
+                    <button type="submit" className={style.button}>INGRESAR</button>
+                    <p className={style.text}>¿Aún no tienes una cuenta?</p>
+                    <Link to="/register" className={style.button}>UNETE</Link>
                 </div>
             </form> 
         </div>

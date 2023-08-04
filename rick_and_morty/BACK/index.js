@@ -1,17 +1,13 @@
-const express = require ("express");
-const server = express();
+
+const server = require("./src/app")
 const PORT = 3001
-const router = require("./index")
-const cors = require("cors")
+const {connection} = require("./src/db")
 
-//?para poder traer todo del body sin problemas
-server.use(express.json())
-server.use(cors())
 
-server.use("/rickandmorty", router)
-
-server.listen(3001, () => {
-    console.log('Server raised in port ' + PORT);  
+connection.sync({force:false}).then(()=> {
+    server.listen(3001, () => {
+        console.log('Server raised in port ' + PORT);
+    })
 })
 
 
