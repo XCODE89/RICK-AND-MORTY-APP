@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {useNavigate} from "react-router-dom"
 import validation from "./Validation"
 import style from "./form.module.css"
 import { Link } from 'react-router-dom';
@@ -6,14 +7,15 @@ import axios from "axios";
 
 
 const Form = ({login}) => {
-
+    
+    const navigate = useNavigate();
 const [userData, setUserData] = useState({
-    username : "",
+    email : "",
     password : ""
 })
 
 const [errors, setErrors] = useState({
-    username : "",
+    email : "",
     password : ""
 })
 
@@ -29,12 +31,16 @@ const handleOnChange = (event) => {
 
     }))
 }
-
 const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("ffkdjfb")
     const response = await axios.post("http://localhost:3001/rickandmorty/login", userData)
-    console.log(response.data)
-    login(userData)
+    if (response.data.token) {
+            login(true)
+            navigate("/home")
+    } else {
+        alert(response.data.error)
+    }
 }
 
     return(
@@ -42,10 +48,10 @@ const handleSubmit = async (event) => {
             <form onSubmit={handleSubmit} className={style.form}>
             <h2 className={style.login}>LOGIN</h2>
                 <div className={style.inputCont}>
-                    <label htmlFor="username"></label>
-                    <input className={style.input} placeholder="Username" type="text" autoComplete="off" name="username" value={userData.username} onChange={handleOnChange}></input>
+                    <label htmlFor="email"></label>
+                    <input className={style.input} placeholder="email" type="text" autoComplete="off" name="email" value={userData.email} onChange={handleOnChange}></input>
                     <div className={style.errorCont}>
-                    {errors.username && <p className={style.alertError}>{errors.username}</p>}
+                    {errors.email && <p className={style.alertError}>{errors.email}</p>}
                     </div>
                 </div>
                 <div className={style.inputCont}>
@@ -60,7 +66,7 @@ const handleSubmit = async (event) => {
                     <p className={style.text}>¿Aún no tienes una cuenta?</p>
                     <Link to="/register" className={style.button}>UNETE</Link>
                 </div>
-            </form> 
+            </form>
         </div>
     )
 }
