@@ -75,7 +75,7 @@ const clearAll = () => {
 
   return (
   <div className='App' >
-    {location.pathname === "/" ? <Form login={login}/> : location.pathname === "/register"?<Register/>:<Nav onSearch={onSearch} randomChar={randomChar} clearAll={clearAll}/>}
+    {location.pathname === "/" ? <Form login={login}/> : location.pathname === "/register"?<Register login={login}/>:<Nav onSearch={onSearch} randomChar={randomChar} clearAll={clearAll}/>}
       <Routes>
         <Route path='/home' element= {<Cards onClose={onClose} characters={characters}/>} />
         <Route path='/about' element={<About/>} />

@@ -33,11 +33,11 @@ const handleOnChange = (event) => {
 }
 const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("ffkdjfb")
     const response = await axios.post("http://localhost:3001/rickandmorty/login", userData)
     if (response.data.token) {
-            login(true)
-            navigate("/home")
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+        login(true)
+        navigate("/home")
     } else {
         alert(response.data.error)
     }

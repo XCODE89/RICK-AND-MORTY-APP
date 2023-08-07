@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import style from "./register.module.css"
 import { useState } from "react";
 import validation from "../Form/Validation"
 
-const Register = () => {
+const Register = ({login}) => {
+   const navigate = useNavigate()
    const [infoUser, setInfoUser] = useState({
       name: "",
       email: "",
@@ -44,6 +45,10 @@ const Register = () => {
             alert(response.data.error)
          } else {
             alert("registrado")
+            const responseLogin = await axios.post("http://localhost:3001/rickandmorty/login", infoUser)
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            login(true)
+            navigate("/home")
          }
    }
    return(

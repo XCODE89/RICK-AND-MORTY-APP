@@ -4,7 +4,6 @@ const generateJWT = require("../utils/generateToken")
 
 const authLogin = async (req) => {
     const {email, password} = req.body;
-    console.log(email, password)
     const user = await User.findOne({
         where : {email:email}
     })
